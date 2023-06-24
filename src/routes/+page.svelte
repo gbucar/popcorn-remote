@@ -11,6 +11,7 @@
 		left,
 		right,
 		seek,
+		togglefullscreen,
 		toggleplaying,
 		up,
 		volume,
@@ -24,6 +25,8 @@
 	import Down from '$lib/svg/down.svelte';
 	import Right from '$lib/svg/right.svelte';
 	import Back from '$lib/svg/back.svelte';
+	import Min from '$lib/svg/min.svelte';
+	import Max from '$lib/svg/max.svelte';
 	let playing: boolean;
 	let currentTime: number; //= 158.135045;
 	let duration: number; //= 11348.512;
@@ -112,11 +115,27 @@
 	<button class="row-start-3 col-start-2" on:click={down}><Down /></button>
 	<button class="row-start-2 col-start-3" on:click={right}><Right /></button>
 	<button class="row-start-3 col-start-3" on:click={back}><Back /></button>
+	{#if playerOpen}
+		<button class="row-start-3 col-start-1" on:click={togglefullscreen}
+			>{#if isFullscreen}<Min />
+			{:else}<Max />
+			{/if}</button
+		>
+	{/if}
 </div>
 
 <!-- playing controls -->
 {#if playerOpen}
 	<div class="flex flex-col place-items-center">
+		<input
+			class="w-11/12"
+			value={currentTime}
+			type="range"
+			min={0}
+			max={duration}
+			step="1"
+			on:change={setCurrentTime}
+		/>
 		<input
 			bind:value={vol}
 			type="range"
@@ -124,14 +143,6 @@
 			max="1"
 			step="0.01"
 			on:change={() => volume([vol])}
-		/>
-		<input
-			value={currentTime}
-			type="range"
-			min={0}
-			max={duration}
-			step="1"
-			on:change={setCurrentTime}
 		/>
 		<SubtitlesInput />
 	</div>

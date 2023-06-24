@@ -47,13 +47,13 @@
 	}
 </script>
 
-<button on:click={start}><Qr className="stroke-black w-9" /></button>
+<!-- <button on:click={start}><Qr className="stroke-black w-9" /></button> -->
 
-<main
-	class="absolute top-20 sm:w-96 sm:h-96 sm:right-2 sm:left-none flex z-50 flex-col bg-white rounded shadow w-screen left-0 p-2"
-	style="visibility: {scan ? '' : 'hidden'};"
->
-	<button on:click={stop} class="text-end font-bold">X</button>
+<!-- <main -->
+<!-- 	class="absolute top-20 sm:w-96 sm:h-96 sm:right-2 sm:left-none flex z-50 flex-col bg-white rounded shadow w-screen left-0 p-2" -->
+<!-- 	style="visibility: {scan ? '' : 'hidden'};" -->
+<!-- > -->
+<!-- 	<button on:click={stop} class="text-end font-bold">X</button> -->
 
-	<reader class="m-auto w-full h-full" id="reader" />
-</main>
+<!-- 	<reader class="m-auto w-full h-full" id="reader" /> -->
+<!-- </main> -->
