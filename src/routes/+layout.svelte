@@ -41,7 +41,7 @@
 			onScanSuccess={(text) => {
 				let creds = JSON.parse(text);
 				if (!creds.ip) {
-					alert('To omrežje ni kul, povež se na hotspot al neki');
+					alert('connect to a different network');
 					return false;
 				}
 				$ip = creds.ip;

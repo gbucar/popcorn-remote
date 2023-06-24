@@ -12,8 +12,6 @@
 		setselection([data.index]);
 		enter();
 		movie = (await getcurrentlist(null, null)).result?.list[data.index];
-
-		console.log(movie);
 	});
 	const playMovie = () => {
 		enter();

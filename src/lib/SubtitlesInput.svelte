@@ -7,7 +7,6 @@
 	onMount(async () => {
 		interval = setInterval(async () => {
 			getsubtitles((res: any) => {
-				console.log(res);
 				subtitles = res.result.subtitles;
 			});
 		}, 3000);

@@ -1,7 +1,7 @@
 export const opt = {
     username: "popcorn",
     password: "popcorn",
-    ip: "192.168.149.183",
+    ip: "127.0.0.1",
     port: "8008",
     debug: false
 };
