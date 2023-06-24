@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Html5Qrcode } from 'html5-qrcode';
 	import { onMount } from 'svelte';
-	import qr from '$lib/svg/qr.svg';
 	import Qr from './svg/qr.svelte';
 
 	export let scan = false;
