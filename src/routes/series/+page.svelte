@@ -5,15 +5,16 @@
 	onMount(async () => {
 		await back();
 		await back();
-		while ((await getcurrenttab(null)).result.tab != 'movies') {
+		while ((await getcurrenttab(null)).result.tab != 'shows') {
 			toggletab();
+			console.log(await getcurrenttab());
 		}
 		items = (await getcurrentlist(null, null))?.result?.list;
 	});
 	let searchQuery = '';
 	const search = async (q: string) => {
 		filtersearch([q]);
-		while ((await getcurrenttab(null)).result.tab != 'movies') {
+		while ((await getcurrenttab(null)).result.tab != 'shows') {
 			toggletab();
 		}
 
@@ -46,7 +47,7 @@
 	{#if items != undefined}
 		{#each items as item, i}
 			<div>
-				<a href="/movies/{item.imdb_id}?index={i}">
+				<a href="/series/{item.imdb_id}?index={i}">
 					<img class="rounded shadow hover:shadow-xl" src={item.images.poster} alt="backdrop" />
 				</a>
 				<h3>{item.title}</h3>

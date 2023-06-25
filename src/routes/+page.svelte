@@ -27,6 +27,7 @@
 	import Back from '$lib/svg/back.svelte';
 	import Min from '$lib/svg/min.svelte';
 	import Max from '$lib/svg/max.svelte';
+	import Speaker from '$lib/svg/speaker.svelte';
 	let playing: boolean;
 	let currentTime: number; //= 158.135045;
 	let duration: number; //= 11348.512;
@@ -128,6 +129,7 @@
 {#if playerOpen}
 	<div class="flex flex-col place-items-center">
 		<input
+			name="time"
 			class="w-11/12"
 			value={currentTime}
 			type="range"
@@ -136,14 +138,20 @@
 			step="1"
 			on:change={setCurrentTime}
 		/>
-		<input
-			bind:value={vol}
-			type="range"
-			min="0"
-			max="1"
-			step="0.01"
-			on:change={() => volume([vol])}
-		/>
+		<label for="volume" class="flex place-items-center gap-1"
+			><Speaker {vol} />
+			{Math.round(vol * 100)} %
+
+			<input
+				name="volume"
+				bind:value={vol}
+				type="range"
+				min="0"
+				max="1"
+				step="0.01"
+				on:change={() => volume([vol])}
+			/>
+		</label>
 		<SubtitlesInput />
 	</div>
 {/if}
