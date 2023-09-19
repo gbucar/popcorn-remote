@@ -1,0 +1,8 @@
+services:
+  popcorn-remote:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "apk add git && git clone https://github.com/gbucar/popcorn-remote.git && cd popcorn-remote && npm install && npm run build && node build"
+    ports:
+      - 127.0.0.1:3000:3000
+
