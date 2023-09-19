@@ -15,7 +15,14 @@
 		toggleplaying,
 		up,
 		volume,
-		watchtrailer
+		watchtrailer,
+        togglequality,
+
+		previousseason,
+
+		nextseason
+
+
 	} from '$lib/popcorn';
 	import Left from '$lib/svg/left.svelte';
 	import Up from '$lib/svg/up.svelte';
@@ -78,7 +85,7 @@
 </script>
 
 <div class="grid grid-rows-3 grid-cols-3 aspect-square place-items-center">
-	<button class="row-start-2 col-start-1" on:click={left}><Left /></button>
+	<button class="row-start-2 col-start-1" on:click={() => {left();previousseason();}}><Left /></button>
 	<button class="row-start-1 col-start-2" on:click={up}><Up /></button>
 	<button
 		class="row-start-2 col-start-2"
@@ -114,7 +121,7 @@
 		{/if}
 	</button>
 	<button class="row-start-3 col-start-2" on:click={down}><Down /></button>
-	<button class="row-start-2 col-start-3" on:click={right}><Right /></button>
+	<button class="row-start-2 col-start-3" on:click={() => {right();nextseason();}}><Right /></button>
 	<button class="row-start-3 col-start-3" on:click={back}><Back /></button>
 	{#if playerOpen}
 		<button class="row-start-3 col-start-1" on:click={togglefullscreen}
@@ -125,33 +132,34 @@
 	{/if}
 </div>
 
-<!-- playing controls -->
-{#if playerOpen}
-	<div class="flex flex-col place-items-center">
-		<input
-			name="time"
-			class="w-11/12"
-			value={currentTime}
-			type="range"
-			min={0}
-			max={duration}
-			step="1"
-			on:change={setCurrentTime}
-		/>
-		<label for="volume" class="flex place-items-center gap-1"
-			><Speaker {vol} />
-			{Math.round(vol * 100)} %
 
-			<input
-				name="volume"
-				bind:value={vol}
-				type="range"
-				min="0"
-				max="1"
-				step="0.01"
-				on:change={() => volume([vol])}
-			/>
-		</label>
-		<SubtitlesInput />
+<!-- playing controls -->
+	<div class="flex flex-col place-items-center">
+        {#if playerOpen}
+            <input
+                name="time"
+                class="w-11/12"
+                value={currentTime}
+                type="range"
+                min={0}
+                max={duration}
+                step="1"
+                on:change={setCurrentTime}
+            />
+            <label for="volume" class="flex place-items-center gap-1"
+                ><Speaker {vol} />
+                {Math.round(vol * 100)} %
+
+                <input
+                    name="volume"
+                    bind:value={vol}
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    on:change={() => volume([vol])}
+                />
+            </label>
+            <SubtitlesInput />
+        {/if}
 	</div>
-{/if}
